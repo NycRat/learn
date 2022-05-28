@@ -1,28 +1,26 @@
-@mixin Theme($theme-name, $bg-color, $text-color, $button-color) {
-  .#{$theme-name} {
-    background-color: $bg-color;
-    color: $text-color;
-
-    button {
-      border-radius: 5px;
-      background-color: $button-color;
-      color: $text-color;
-    }
-  }
-}
-
-$dark-bg: #3b3939;
-$dark-text: #ffffff;
-$light-bg: #f4e1e1;
-$light-text: #262323;
-
-@include Theme("dark", $dark-bg, $dark-text, #6a5b5b);
-@include Theme("light", $light-bg, $light-text, #d3c4c4);
+@import "./Themes.scss";
 
 .app {
   text-align: center;
   width: 100%;
   height: 100%;
+  background-color: $background-color;
+  color: $text-color;
+
+  button {
+    border-radius: 5px;
+    background-color: $button-color;
+    color: $text-color;
+  }
+
+  .theme-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+  }
 }
 
 .app-title {

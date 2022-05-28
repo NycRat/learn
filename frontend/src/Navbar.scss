@@ -1,0 +1,14 @@
+@import "./Themes.scss";
+
+.navbar {
+  margin: 0;
+  padding: 0;
+  background-color: $navbar-color;
+}
+
+.nav-link {
+  margin: 10px;
+  color: $text-color;
+  text-decoration: none;
+  font-size: calc(26px + 0.5vw);
+}

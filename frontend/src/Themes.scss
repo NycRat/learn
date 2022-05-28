@@ -1,0 +1,18 @@
+.theme-dark {
+  --background-color: #3b3939;
+  --text-color: #ffffff;
+  --button-color: #6a5b5b;
+  --navbar-color: #212121;
+}
+
+.theme-light {
+  --background-color: #f4e1e1;
+  --text-color: #262323;
+  --button-color: #d3c4c4;
+  --navbar-color: #c1b5b5;
+}
+
+$background-color: var(--background-color);
+$text-color: var(--text-color);
+$button-color: var(--button-color);
+$navbar-color: var(--navbar-color);
