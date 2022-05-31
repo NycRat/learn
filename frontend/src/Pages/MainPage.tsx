@@ -1,7 +1,14 @@
-const MainPage = () => {
+import { ForumPostProps } from "../Components/ForumPost";
+
+export interface MainPageProps {
+  topForumPosts: ForumPostProps[];
+}
+
+const MainPage = (props: MainPageProps) => {
   return (
-    <div>
-      <h1 className="app-title">LEARN</h1>
+    <div className="page">
+      <h1 className="page-title">LEARN</h1>
+      <div className="forum-section"></div>
     </div>
   );
 };

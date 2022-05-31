@@ -14,16 +14,11 @@
   }
 
   .theme-button {
-    position: absolute;
-    right: 10px;
+    position: fixed;
     bottom: 10px;
+    right: 10px;
     width: 120px;
     height: 40px;
     font-size: 18px;
   }
-}
-
-.app-title {
-  margin: 10px;
-  font-size: calc(50px + 5vw);
 }

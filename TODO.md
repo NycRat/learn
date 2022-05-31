@@ -4,16 +4,33 @@
 
 - [ ] Banner on top
   - [ ] Switch between different images
-- [ ] Forum on left
-- [ ] Updates on right
-- [ ] Reviewed tutorials in middle
+- [ ] Updates page
+- [ ] Reviewed tutorials
+- [ ] About page
+- [ ] Contact page
+- [ ] Footer
+- [ ] Social media
 - [ ] Backend
 
 ### In Progress
 
-- [ ] Nothing
+- [ ] Forum Page
+
+  - [ ] Forum on left of main page
+  - [ ] Forum scrollbar colors
+  - [ ] Connect to backend
+
+  - [ ] Forum Posts
+    - [✓] Post title
+    - [✓] Post content
+    - [ ] Post date
+    - [ ] Post author
+    - [ ] Post comments
+    - [ ] Post likes
+    - [ ] Post dislikes
+    - [ ] Post reports
 
 ### Done ✓
 
-- [x] Added repo files
-- [x] Navbar
+- [✓] Added repo files
+- [✓] Navbar
