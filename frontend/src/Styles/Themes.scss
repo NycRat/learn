@@ -3,16 +3,19 @@
   --text-color: #ffffff;
   --button-color: #6a5b5b;
   --navbar-color: #212121;
+  --post-background-color: #575454;
 }
 
 .theme-light {
-  --background-color: #f4e1e1;
+  --background-color: #bdc3b4;
   --text-color: #262323;
   --button-color: #d3c4c4;
   --navbar-color: #c1b5b5;
+  --post-background-color: #dec1c1;
 }
 
 $background-color: var(--background-color);
 $text-color: var(--text-color);
 $button-color: var(--button-color);
 $navbar-color: var(--navbar-color);
+$post-background-color: var(--post-background-color);

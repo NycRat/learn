@@ -12,3 +12,74 @@
 
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
+
+.main-page-posts-section {
+  width: 40%;
+  height: 60vh;
+
+  // TODO - add scollbar colors
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  margin: 0 auto;
+
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.forum-post {
+  width: calc(100% - 30px);
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  padding: 5px;
+  border-radius: 20px;
+  background-color: $post-background-color;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.forum-post:hover {
+  filter: brightness(90%);
+}
+
+.forum-post-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.forum-post-content {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.forum-post-page-section {
+  // TODO - rename, this the div that contains the title and content
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: $post-background-color;
+
+  width: 80%;
+  height: 60%;
+}
+
+.forum-post-page-title {
+  // large font
+  font-size: calc(40px + 2vw);
+  font-weight: bold;
+  margin: 5px;
+  margin-bottom: 20px;
+}
+
+.forum-post-page-content {
+  text-align: left;
+  font-size: 1.2em;
+  margin: 10px;
+}
+
+.show-comments-button {
+}

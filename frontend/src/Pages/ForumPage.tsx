@@ -1,19 +1,15 @@
-import { ForumPostProps } from "../Components/ForumPost";
-import ForumPost from "../Components/ForumPost";
+import PostInfo from "../Models/Post";
+import ForumSection from "../Components/ForumSection";
 
 export interface ForumPageProps {
-  forumPosts: ForumPostProps[];
+  forumPosts: PostInfo[];
 }
 
 const ForumPage = (props: ForumPageProps) => {
   return (
     <div className="page">
       <h1 className="page-title">FORUM</h1>
-      <div className="forum-page-posts-section">
-        {props.forumPosts.map((post) => (
-          <ForumPost key={post.id} {...post} />
-        ))}
-      </div>
+      <ForumSection forumPosts={props.forumPosts} />
     </div>
   );
 };

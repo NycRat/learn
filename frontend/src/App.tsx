@@ -1,36 +1,22 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Styles/App.scss";
-import "./Styles/Page.scss";
-import "./Styles/Forum.scss";
 import MainPage from "./Pages/MainPage";
 import Navbar from "./Components/Navbar";
 import NotFoundPage from "./Pages/NotFoundPage";
 import ForumPage from "./Pages/ForumPage";
-import { ForumPostProps } from "./Components/ForumPost";
+import PostInfo from "./Models/Post";
+import ForumPostPage from "./Pages/ForumPostPage";
+import { getRecentForumPosts } from "./Api/ForumApi";
 
 type Theme = "light" | "dark";
 
 const App = () => {
   const [theme, setTheme] = useState<Theme>("dark");
 
-  const [forumPosts, setForumPosts] = useState<ForumPostProps[]>([]);
+  const [forumPosts, setForumPosts] = useState<PostInfo[]>([]);
 
   useEffect(() => {
-    // fetch("/api/forum-posts")
-    //   .then((response) => response.json())
-    //   .then((data) => setForumPosts(data));
-
-    let tempForumPosts: ForumPostProps[] = [];
-    for (let i = 0; i < 10; i++) {
-      // temporary data before backend is implemented
-      tempForumPosts.push({
-        id: i,
-        title: `Post ${i}`,
-        content: `Content of post ${i}`,
-      });
-    }
-    setForumPosts(tempForumPosts);
+    setForumPosts(getRecentForumPosts());
   }, []);
 
   return (
@@ -39,6 +25,7 @@ const App = () => {
       <HashRouter>
         <Routes>
           <Route path="/" element={<MainPage topForumPosts={forumPosts} />} />
+          <Route path="/forum/post/:id" element={<ForumPostPage id={null} />} />
           <Route
             path="/forum"
             element={<ForumPage forumPosts={forumPosts} />}

@@ -11,6 +11,7 @@
 - [ ] Footer
 - [ ] Social media
 - [ ] Backend
+- [ ] Accounts
 
 ### In Progress
 
@@ -19,8 +20,10 @@
   - [ ] Forum on left of main page
   - [ ] Forum scrollbar colors
   - [ ] Connect to backend
-
+  - [ ] Search for posts
   - [ ] Forum Posts
+    - [ ] Posting
+      - [ ] Posting images
     - [✓] Post title
     - [✓] Post content
     - [ ] Post date

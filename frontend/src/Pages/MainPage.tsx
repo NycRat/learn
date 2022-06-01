@@ -1,14 +1,17 @@
-import { ForumPostProps } from "../Components/ForumPost";
+import PostInfo from "../Models/Post";
+import ForumSection from "../Components/ForumSection";
 
 export interface MainPageProps {
-  topForumPosts: ForumPostProps[];
+  topForumPosts: PostInfo[];
 }
 
 const MainPage = (props: MainPageProps) => {
   return (
     <div className="page">
       <h1 className="page-title">LEARN</h1>
-      <div className="forum-section"></div>
+      <div className="main-page-left-section">
+        <ForumSection forumPosts={props.topForumPosts} />
+      </div>
     </div>
   );
 };
