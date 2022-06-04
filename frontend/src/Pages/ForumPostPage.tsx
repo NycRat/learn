@@ -36,7 +36,7 @@ const ForumPostPage = (props: { id: number | null }) => {
           className="show-comments-button"
           onClick={() => setShowComments(!showComments)}
         >
-          Comments
+          Comments: {post.comments.length}
         </button>
 
         {showComments &&
