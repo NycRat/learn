@@ -8,7 +8,7 @@ const ForumPost = (props: PostInfo) => {
     <div
       className="forum-post"
       onClick={() => {
-        navigate("/forum/post/" + props.id);
+        navigate("/forum/post/" + props._id);
       }}
     >
       {/* div that reroutes user to forum post page on click */}

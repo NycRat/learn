@@ -16,7 +16,11 @@ const App = () => {
   const [forumPosts, setForumPosts] = useState<PostInfo[]>([]);
 
   useEffect(() => {
-    setForumPosts(getRecentForumPosts());
+    const fetchPosts = async () => {
+      const posts = await getRecentForumPosts();
+      setForumPosts(posts);
+    };
+    fetchPosts();
   }, []);
 
   return (

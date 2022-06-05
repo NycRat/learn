@@ -1,0 +1,13 @@
+{
+  "name": "learn",
+  "version": "1.0.0",
+  "repository": "https://github.com/NycRat/learn",
+  "author": "Eric Xiao <ericxiao0000@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"yarn --cwd backend nodemon\" \"yarn --cwd frontend start\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.1"
+  }
+}

@@ -4,20 +4,23 @@ import { getForumPostById } from "../Api/ForumApi";
 import PostInfo from "../Models/Post";
 import NotFoundPage from "./NotFoundPage";
 
-const ForumPostPage = (props: { id: number | null }) => {
+const ForumPostPage = (props: { id: string | null }) => {
   // this the page for displaying a single post
 
   let { id } = useParams();
   const [post, setPost] = useState<PostInfo | null>(null);
 
   useEffect(() => {
-    if (props.id === null) {
-      if (id !== undefined) {
-        setPost(getForumPostById(parseInt(id)));
+    const fetchPost = async () => {
+      if (props.id === null) {
+        if (id !== undefined) {
+          setPost(await getForumPostById(id));
+        }
+      } else {
+        setPost(await getForumPostById(props.id));
       }
-    } else {
-      setPost(getForumPostById(props.id));
-    }
+    };
+    fetchPost();
   }, [props.id, id]);
 
   const [showComments, setShowComments] = useState(false);
@@ -28,6 +31,9 @@ const ForumPostPage = (props: { id: number | null }) => {
     <div className="page">
       <div className="forum-post-page-section">
         <h1 className="forum-post-page-title">{post.title}</h1>
+        <p className="forum-post-page-info-text">
+          {post.author.name} on {post.date.toLocaleDateString("en-US")}
+        </p>
         <div className="forum-post-page-content">{post.content}</div>
       </div>
 
