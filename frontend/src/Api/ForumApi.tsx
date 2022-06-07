@@ -12,7 +12,7 @@ export const getUserByName = (name: string): UserInfo => {
 
 export const getRecentForumPosts = async () => {
   let recentPosts: PostInfo[] = [];
-  await axios.get("http://localhost:3230/api/forum/posts").then((res) => {
+  await axios.get("/api/forum/posts").then((res) => {
     try {
       recentPosts = res.data;
     } catch (err) {
@@ -24,7 +24,7 @@ export const getRecentForumPosts = async () => {
 
 export const getForumPostById = async (id: string) => {
   let post: PostInfo | null = null;
-  await axios.get("http://localhost:3230/api/forum/posts/" + id).then((res) => {
+  await axios.get("/api/forum/posts/" + id).then((res) => {
     try {
       post = res.data;
       if (post !== null) {
@@ -39,5 +39,5 @@ export const getForumPostById = async (id: string) => {
 };
 
 export const postForumPost = async (post: any) => {
-  await axios.post("http://localhost:3230/api/forum/posts", post);
+  await axios.post("/api/forum/posts", post);
 };

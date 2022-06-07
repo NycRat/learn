@@ -10,10 +10,11 @@
 - [ ] Contact page
 - [ ] Footer
 - [ ] Social media
-- [ ] Backend
 - [ ] Accounts
 
 ### In Progress
+
+- [ ] Backend
 
 - [ ] Forum Page
 

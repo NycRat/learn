@@ -1,6 +1,6 @@
 import express from "express";
 import { ObjectId } from "mongodb";
-import { getDB } from "./connectionDB";
+import { getDB } from "./ConnectionDB.js";
 
 const forumRouter = express.Router();
 
@@ -10,6 +10,8 @@ forumRouter
     getDB("forumDB")
       .collection("posts")
       .find({})
+      .sort({ $natural: 1 })
+      .limit(10)
       .toArray((err, result) => {
         if (err) {
           res.status(500).json({ message: err });
