@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd frontend && yarn --cwd frontend run build && yarn --cwd backend && yarn --cwd backend tsc"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend && cd backend && npx tsc"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
