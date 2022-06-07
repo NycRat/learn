@@ -10,14 +10,15 @@
 - [ ] Contact page
 - [ ] Footer
 - [ ] Social media
-- [ ] Backend
 - [ ] Accounts
 
 ### In Progress
 
+- [ ] Backend
+
 - [ ] Forum Page
 
-  - [ ] Forum on left of main page
+  - [✓] Forum on left of main page
   - [ ] Forum scrollbar colors
   - [ ] Connect to backend
   - [ ] Search for posts

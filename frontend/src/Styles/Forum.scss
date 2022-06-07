@@ -72,8 +72,11 @@
   // large font
   font-size: calc(40px + 2vw);
   font-weight: bold;
-  margin: 5px;
-  margin-bottom: 20px;
+  margin: 0;
+}
+
+.forum-post-page-info-text {
+  margin: 0;
 }
 
 .forum-post-page-content {

@@ -1,50 +1,43 @@
+import axios from "axios";
+import PostInfo from "../Models/Post";
 import UserInfo from "../Models/User";
 
-export const getUserById = (id: number): UserInfo => {
+export const getUserByName = (name: string): UserInfo => {
+  // temporary
   return {
-    id: id,
-    name: "User " + id,
-    email: "user" + id + "@example.com",
+    name: name,
+    email: name + "@example.com",
   };
 };
 
-export const getRecentForumPosts = () => {
-  // temporary data before backend is implemented
-  let recentPosts = [];
-  for (let i = 0; i < 10; i++) {
-    recentPosts.push({
-      id: i,
-      author: getUserById(0), // temp
-      date: new Date(),
-      title: `Post ${i}`,
-      content: `Content of post ${i}`,
-      comments: [],
-    });
-  }
+export const getRecentForumPosts = async () => {
+  let recentPosts: PostInfo[] = [];
+  await axios.get("/api/forum/posts").then((res) => {
+    try {
+      recentPosts = res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  });
   return recentPosts;
 };
 
-export const getForumPostById = (id: number) => {
-  // temporary data before backend is implemented
-  return {
-    id: id,
-    author: getUserById(0),
-    date: new Date(),
-    title: `Post ${id}`,
-    content: `Content of post ${id}`,
-    comments: [
-      {
-        id: 0,
-        author: getUserById(0),
-        date: new Date(),
-        content: "wao",
-      },
-      {
-        id: 32,
-        author: getUserById(2),
-        date: new Date(),
-        content: "Something else",
-      },
-    ],
-  };
+export const getForumPostById = async (id: string) => {
+  let post: PostInfo | null = null;
+  await axios.get("/api/forum/posts/" + id).then((res) => {
+    try {
+      post = res.data;
+      if (post !== null) {
+        post.date = new Date(post.date);
+      }
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  return post;
+};
+
+export const postForumPost = async (post: any) => {
+  await axios.post("/api/forum/posts", post);
 };
