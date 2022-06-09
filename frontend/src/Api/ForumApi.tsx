@@ -1,18 +1,18 @@
 import axios from "axios";
 import PostInfo from "../Models/Post";
 import UserInfo from "../Models/User";
+import apiURL from "./ApiUrl";
 
 export const getUserByName = (name: string): UserInfo => {
   // temporary
   return {
-    name: name,
-    email: name + "@example.com",
+    username: name,
   };
 };
 
 export const getRecentForumPosts = async () => {
   let recentPosts: PostInfo[] = [];
-  await axios.get("/api/forum/posts").then((res) => {
+  await axios.get(apiURL + "/api/forum/posts").then((res) => {
     try {
       recentPosts = res.data;
     } catch (err) {
@@ -24,7 +24,7 @@ export const getRecentForumPosts = async () => {
 
 export const getForumPostById = async (id: string) => {
   let post: PostInfo | null = null;
-  await axios.get("/api/forum/posts/" + id).then((res) => {
+  await axios.get(apiURL + "/api/forum/posts/" + id).then((res) => {
     try {
       post = res.data;
       if (post !== null) {
@@ -39,5 +39,5 @@ export const getForumPostById = async (id: string) => {
 };
 
 export const postForumPost = async (post: any) => {
-  await axios.post("/api/forum/posts", post);
+  await axios.post(apiURL + "/api/forum/posts", post);
 };

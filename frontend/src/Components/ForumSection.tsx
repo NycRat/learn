@@ -4,9 +4,11 @@ import ForumPost from "./ForumPost";
 const ForumSection = (props: ForumPageProps) => {
   return (
     <div className="forum-page-posts-section">
-      {props.forumPosts.map((post) => (
-        <ForumPost key={post._id} {...post} />
-      ))}
+      {!props.forumPosts ? (
+        <div>Loading...</div>
+      ) : (
+        props.forumPosts.map((post) => <ForumPost key={post._id} {...post} />)
+      )}
     </div>
   );
 };

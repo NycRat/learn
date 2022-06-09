@@ -1,6 +1,6 @@
 import express from "express";
 import { ObjectId } from "mongodb";
-import { getDB } from "./ConnectionDB.js";
+import { getDB } from "./ConnectionDB";
 
 const forumRouter = express.Router();
 

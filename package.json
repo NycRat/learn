@@ -1,12 +1,15 @@
 {
   "name": "learn",
-  "type": "module",
+  "type": "commonjs",
   "version": "1.0.0",
   "repository": "https://github.com/NycRat/learn",
   "author": "Eric Xiao <ericxiao0000@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
+    "dev": "concurrently \"yarn run backend\" \"yarn run frontend\"",
+    "frontend": "yarn --cwd frontend start",
+    "backend": "yarn --cwd backend nodemon",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend && cd backend && npx tsc"
   },
   "devDependencies": {

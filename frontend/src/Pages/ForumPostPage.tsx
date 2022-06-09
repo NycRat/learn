@@ -8,7 +8,17 @@ const ForumPostPage = (props: { id: string | null }) => {
   // this the page for displaying a single post
 
   let { id } = useParams();
-  const [post, setPost] = useState<PostInfo | null>(null);
+  const [post, setPost] = useState<PostInfo | null>({
+    _id: "",
+    author: {
+      username: "",
+    },
+    date: new Date(),
+    title: "",
+    content: "",
+    comments: [],
+  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -19,6 +29,7 @@ const ForumPostPage = (props: { id: string | null }) => {
       } else {
         setPost(await getForumPostById(props.id));
       }
+      setLoading(false);
     };
     fetchPost();
   }, [props.id, id]);
@@ -32,7 +43,7 @@ const ForumPostPage = (props: { id: string | null }) => {
       <div className="forum-post-page-section">
         <h1 className="forum-post-page-title">{post.title}</h1>
         <p className="forum-post-page-info-text">
-          {post.author.name} on {post.date.toLocaleDateString("en-US")}
+          {post.author.username} on {post.date.toLocaleDateString("en-US")}
         </p>
         <div className="forum-post-page-content">{post.content}</div>
       </div>
@@ -48,7 +59,7 @@ const ForumPostPage = (props: { id: string | null }) => {
         {showComments &&
           post.comments.map((comment) => (
             <div className="forum-post-comment">
-              {comment.author.name}: {comment.content}
+              {comment.author.username}: {comment.content}
             </div>
           ))}
       </div>

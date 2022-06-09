@@ -1,5 +1,5 @@
 import express from "express";
-import forumRouter from "./Forum.routes.js";
+import forumRouter from "./Forum.routes";
 
 const router = express.Router();
 
