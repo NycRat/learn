@@ -10,11 +10,15 @@
 - [ ] Contact page
 - [ ] Footer
 - [ ] Social media
-- [ ] Accounts
 
 ### In Progress
 
 - [ ] Backend
+
+- [ ] Accounts
+
+  - [ ] Login
+  - [ ] Signup
 
 - [ ] Forum Page
 

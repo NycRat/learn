@@ -7,6 +7,8 @@ import ForumPage from "./Pages/ForumPage";
 import PostInfo from "./Models/Post";
 import ForumPostPage from "./Pages/ForumPostPage";
 import { getRecentForumPosts } from "./Api/ForumApi";
+import LoginPage from "./Pages/LoginPage";
+import { getUserFromToken } from "./Api/UserApi";
 
 type Theme = "light" | "dark";
 
@@ -14,18 +16,21 @@ const App = () => {
   const [theme, setTheme] = useState<Theme>("dark");
 
   const [forumPosts, setForumPosts] = useState<PostInfo[]>([]);
+  const [user, setUser] = useState<string>(""); // for now, just a string
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchInfo = async () => {
+      const user = await getUserFromToken();
+      setUser(user ? user.username : "");
       const posts = await getRecentForumPosts();
       setForumPosts(posts);
     };
-    fetchPosts();
+    fetchInfo();
   }, []);
 
   return (
     <div className={"app theme-" + theme}>
-      <Navbar />
+      <Navbar username={user} />
       <HashRouter>
         <Routes>
           <Route path="/" element={<MainPage topForumPosts={forumPosts} />} />
@@ -34,6 +39,7 @@ const App = () => {
             path="/forum"
             element={<ForumPage forumPosts={forumPosts} />}
           />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </HashRouter>
