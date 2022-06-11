@@ -5,26 +5,17 @@ export const login = async (username: string, password: string) => {
   if (username.length < 3 || password.length < 5) {
     return;
   }
-  await axios
-    .post(`${apiURL}/user/login`, { username, password })
-    .then((res) => {
-      localStorage.setItem("token", res.data.token);
-    });
+  return axios.post(`${apiURL}/user/login`, { username, password });
 };
 
 export const register = async (username: string, password: string) => {
   if (username.length < 3 || password.length < 5) {
     return;
   }
-  await axios
-    .post(`${apiURL}/user/register`, { username, password })
-    .then((res) => {
-      localStorage.setItem("token", res.data.token);
-    });
+  return axios.post(`${apiURL}/user/register`, { username, password });
 };
 
-export const getUserFromToken = async () => {
-  const token = localStorage.getItem("token");
+export const getUserFromToken = async (token: string | null) => {
   if (!token) {
     return null;
   }

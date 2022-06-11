@@ -42,7 +42,6 @@ export const postForumPost = async (post: any) => {
   await axios.post(
     `${apiURL}/forum/posts`,
     {
-      token: localStorage.getItem("token"),
       post: post,
     },
     {

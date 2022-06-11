@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { login, register } from "../Api/UserApi";
+import { useContext, useState } from "react";
+import { getUserFromToken, login, register } from "../Api/UserApi";
+import { UserContext } from "../App";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <div className="page">
@@ -34,7 +36,21 @@ const LoginPage = () => {
           />
         </label>
       </form>
-      <button onClick={() => login(username, password)}>Login</button>
+      <button
+        onClick={() => {
+          login(username, password).then(async (res) => {
+            if (res) {
+              localStorage.setItem("token", res.data.token);
+              const user = await getUserFromToken(
+                localStorage.getItem("token")
+              );
+              setUser(user.username);
+            }
+          });
+        }}
+      >
+        Login
+      </button>
     </div>
   );
 };

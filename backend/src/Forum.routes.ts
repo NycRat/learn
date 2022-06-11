@@ -23,7 +23,6 @@ forumRouter
   })
   .post((req, res) => {
     verifyToken(req, res, (user) => {
-      console.log(user);
       let post = {
         author: user.username,
         date: new Date(req.body.post.date),

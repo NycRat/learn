@@ -1,4 +1,9 @@
-const Navbar = (props: { username: string }) => {
+import { useContext } from "react";
+import { UserContext } from "../App";
+
+const Navbar = () => {
+  const { user, setUser } = useContext(UserContext);
+
   return (
     <nav className="navbar">
       <a className="nav-link nav-left" href="/#/">
@@ -7,9 +12,9 @@ const Navbar = (props: { username: string }) => {
       <a className="nav-link nav-left" href="/#/forum">
         Forum
       </a>
-      {props.username !== "" ? (
+      {user !== "" ? (
         <a className="nav-link nav-right" href="/#/TODO">
-          {props.username}
+          {user}
         </a>
       ) : (
         <a className="nav-link nav-right" href="/#/login">

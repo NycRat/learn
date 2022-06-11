@@ -8,6 +8,11 @@ userRouter.route("/login").post((req, res) => {
   const collection = db.collection("logins");
   const username = req.body.username;
   const password = req.body.password;
+  if (username.length < 3 || password.length < 5) {
+    res.status(400).json({ message: "Bad Request" });
+    return;
+  }
+
   collection.findOne(
     { username: username, password: password },
     (err, result) => {
