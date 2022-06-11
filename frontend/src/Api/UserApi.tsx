@@ -21,7 +21,7 @@ export const getUserFromToken = async (token: string | null) => {
   }
   let user: any;
   await axios
-    .get(`${apiURL}/user/getUserFromToken`, {
+    .get(`${apiURL}/user/getFromToken`, {
       headers: { Authorization: `${token}` },
     })
     .then((res) => {

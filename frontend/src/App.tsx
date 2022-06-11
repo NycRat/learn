@@ -10,6 +10,7 @@ import { getRecentForumPosts } from "./Api/ForumApi";
 import LoginPage from "./Pages/LoginPage";
 import { getUserFromToken } from "./Api/UserApi";
 import RegisterPage from "./Pages/RegisterPage";
+import UserPage from "./Pages/UserPage";
 
 type Theme = "light" | "dark";
 
@@ -53,6 +54,7 @@ const App = () => {
             />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
+            <Route path="/user/:username" element={<UserPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </HashRouter>

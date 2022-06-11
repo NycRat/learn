@@ -58,7 +58,7 @@ userRouter.route("/register").post((req, res) => {
   });
 });
 
-userRouter.route("/getUserFromToken").get((req, res) => {
+userRouter.route("/getFromToken").get((req, res) => {
   const db = getDB("userDB");
   const collection = db.collection("logins");
   const token = req.headers.authorization;
@@ -72,5 +72,8 @@ userRouter.route("/getUserFromToken").get((req, res) => {
     }
   });
 });
+
+// userRouter.route("/getFromName").get((req, res) => {
+//   const db = getDB("userDB");
 
 export default userRouter;
