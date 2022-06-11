@@ -12,7 +12,7 @@ export const getUserByName = (name: string): UserInfo => {
 
 export const getRecentForumPosts = async () => {
   let recentPosts: PostInfo[] = [];
-  await axios.get(apiURL + "/api/forum/posts").then((res) => {
+  await axios.get(`${apiURL}/forum/posts`).then((res) => {
     try {
       recentPosts = res.data;
     } catch (err) {
@@ -24,7 +24,7 @@ export const getRecentForumPosts = async () => {
 
 export const getForumPostById = async (id: string) => {
   let post: PostInfo | null = null;
-  await axios.get(apiURL + "/api/forum/posts/" + id).then((res) => {
+  await axios.get(`${apiURL}/forum/posts/${id}`).then((res) => {
     try {
       post = res.data;
       if (post !== null) {
@@ -39,5 +39,15 @@ export const getForumPostById = async (id: string) => {
 };
 
 export const postForumPost = async (post: any) => {
-  await axios.post(apiURL + "/api/forum/posts", post);
+  await axios.post(
+    `${apiURL}/forum/posts`,
+    {
+      post: post,
+    },
+    {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    }
+  );
 };

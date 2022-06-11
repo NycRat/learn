@@ -1,0 +1,58 @@
+import { useContext, useState } from "react";
+import { getUserFromToken, login, register } from "../Api/UserApi";
+import { UserContext } from "../App";
+
+const LoginPage = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(UserContext);
+
+  return (
+    <div className="page">
+      <h1 className="login-title">Login</h1>
+      <form
+        className="login-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <label className="login-input">
+          Username:{" "}
+          <input
+            placeholder="Enter username"
+            type="username"
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label className="login-input">
+          Password:{" "}
+          <input
+            placeholder="Enter password"
+            type="password"
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+      </form>
+      <button
+        onClick={() => {
+          login(username, password).then(async (res) => {
+            if (res) {
+              localStorage.setItem("token", res.data.token);
+              const user = await getUserFromToken(
+                localStorage.getItem("token")
+              );
+              setUser(user.username);
+            }
+          });
+        }}
+      >
+        Login
+      </button>
+    </div>
+  );
+};
+
+export default LoginPage;
