@@ -11,7 +11,7 @@ forumRouter
     getDB("forumDB")
       .collection("posts")
       .find({})
-      .sort({ $natural: 1 })
+      .sort({ $natural: -1 })
       .limit(10)
       .toArray((err, result) => {
         if (err) {

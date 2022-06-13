@@ -1,29 +1,21 @@
 import PostInfo from "../Models/Post";
 import ForumSection from "../Components/ForumSection";
-import { postForumPost } from "../Api/ForumApi";
+import { useNavigate } from "react-router-dom";
 
 export interface ForumPageProps {
   forumPosts: PostInfo[];
 }
 
 const ForumPage = (props: ForumPageProps) => {
+  const navigate = useNavigate();
+
   return (
     <div className="page">
       <h1 className="page-title">FORUM</h1>
       <button
         className="idk"
         onClick={() => {
-          postForumPost({
-            login: {
-              username: "user1",
-              password: "password",
-            },
-            post: {
-              title: "NEW POST",
-              content: "GReat contTEktnt text",
-              date: new Date(),
-            },
-          });
+          navigate("/forum/newpost");
         }}
       >
         New Post

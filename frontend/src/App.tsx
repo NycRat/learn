@@ -11,6 +11,7 @@ import LoginPage from "./Pages/LoginPage";
 import { getUserFromToken } from "./Api/UserApi";
 import RegisterPage from "./Pages/RegisterPage";
 import UserPage from "./Pages/UserPage";
+import ForumNewPostPage from "./Pages/ForumNewPostPage";
 
 type Theme = "light" | "dark";
 
@@ -48,6 +49,7 @@ const App = () => {
               path="/forum/post/:id"
               element={<ForumPostPage id={null} />}
             />
+            <Route path="/forum/newpost" element={<ForumNewPostPage />} />
             <Route
               path="/forum"
               element={<ForumPage forumPosts={forumPosts} />}

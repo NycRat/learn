@@ -10,9 +10,7 @@ const ForumPostPage = (props: { id: string | null }) => {
   let { id } = useParams();
   const [post, setPost] = useState<PostInfo | null>({
     _id: "",
-    author: {
-      username: "",
-    },
+    author: "",
     date: new Date(),
     title: "",
     content: "",
@@ -43,7 +41,7 @@ const ForumPostPage = (props: { id: string | null }) => {
       <div className="forum-post-page-section">
         <h1 className="forum-post-page-title">{post.title}</h1>
         <p className="forum-post-page-info-text">
-          {post.author.username} on {post.date.toLocaleDateString("en-US")}
+          By {post.author} on {post.date.toLocaleDateString("en-US")}
         </p>
         <div className="forum-post-page-content">{post.content}</div>
       </div>

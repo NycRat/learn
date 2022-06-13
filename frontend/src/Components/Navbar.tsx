@@ -6,10 +6,10 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <a className="nav-link nav-left" href="/#/">
+      <a className="nav-link" href="/#/">
         Home
       </a>
-      <a className="nav-link nav-left" href="/#/forum">
+      <a className="nav-link" href="/#/forum">
         Forum
       </a>
       {user !== "" ? (
@@ -17,9 +17,14 @@ const Navbar = () => {
           {user}
         </a>
       ) : (
-        <a className="nav-link nav-right" href="/#/login">
-          Login
-        </a>
+        <span>
+          <a className="nav-link nav-right" href="/#/signup">
+            Signup
+          </a>
+          <a className="nav-link nav-right" href="/#/login">
+            Login
+          </a>
+        </span>
       )}
     </nav>
   );
