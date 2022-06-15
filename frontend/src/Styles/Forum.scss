@@ -53,6 +53,12 @@
   margin-bottom: 10px;
 }
 
+.fourm-page-new-post-button {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 1em;
+}
+
 .forum-post-page-section {
   // TODO - rename, this the div that contains the title and content
   width: 100%;
@@ -83,6 +89,9 @@
   text-align: left;
   font-size: 1.2em;
   margin: 10px;
+  padding: 10px;
+  outline: 1px solid $outline-color;
+  border-radius: 10px;
 }
 
 .show-comments-button {
@@ -103,4 +112,43 @@
   border-radius: 20px;
   background-color: $post-background-color;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.new-post-form {
+  width: 80%;
+  height: fit-content;
+  margin: auto;
+  margin-top: 5vh;
+
+  padding: 5px;
+  border-radius: 20px;
+  background-color: $post-background-color;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.new-post-title-input {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 2em;
+  background-color: $post-background-color;
+  border-radius: 20px;
+  color: $text-color;
+  padding: 5px;
+  width: 500px;
+  max-width: 80%;
+}
+
+.new-post-content-textarea {
+  font-size: 1.2em;
+  margin-top: 10px;
+  width: 90%;
+  height: 55vh;
+  background-color: $post-background-color;
+  border-radius: 20px;
+  padding: 10px;
+  color: $text-color;
+}
+
+.new-post-submit-button {
+  font-size: 2em;
 }

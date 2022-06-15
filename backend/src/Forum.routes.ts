@@ -22,6 +22,11 @@ forumRouter
       });
   })
   .post((req, res) => {
+    if (req.body.post.title === "" || req.body.post.content === "") {
+      res.status(400).json({ message: "Title and content is required" });
+      return;
+    }
+
     verifyToken(req, res, (user) => {
       let post = {
         author: user.username,

@@ -4,6 +4,7 @@
   --button-color: #6a5b5b;
   --navbar-color: #212121;
   --post-background-color: #575454;
+  --outline-color: #ffffff;
 }
 
 .theme-light {
@@ -12,6 +13,7 @@
   --button-color: #d3c4c4;
   --navbar-color: #c1b5b5;
   --post-background-color: #dec1c1;
+  --outline-color: #262323;
 }
 
 $background-color: var(--background-color);
@@ -19,3 +21,4 @@ $text-color: var(--text-color);
 $button-color: var(--button-color);
 $navbar-color: var(--navbar-color);
 $post-background-color: var(--post-background-color);
+$outline-color: var(--outline-color);

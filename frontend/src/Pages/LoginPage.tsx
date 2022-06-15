@@ -16,9 +16,10 @@ const LoginPage = () => {
           event.preventDefault();
         }}
       >
-        <label className="login-input">
+        <label>
           Username:{" "}
           <input
+            className="login-input"
             placeholder="Enter username"
             type="username"
             name="username"
@@ -26,9 +27,10 @@ const LoginPage = () => {
           />
         </label>
         <br></br>
-        <label className="login-input">
+        <label>
           Password:{" "}
           <input
+            className="login-input"
             placeholder="Enter password"
             type="password"
             name="password"

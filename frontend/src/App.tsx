@@ -28,6 +28,11 @@ const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      setTheme(localStorage.getItem("theme") as Theme);
+    }
     const fetchInfo = async () => {
       const user = await getUserFromToken(localStorage.getItem("token"));
       setUser(user ? user.username : "");
@@ -65,8 +70,10 @@ const App = () => {
           onClick={() => {
             if (theme === "light") {
               setTheme("dark");
+              localStorage.setItem("theme", "dark");
             } else {
               setTheme("light");
+              localStorage.setItem("theme", "light");
             }
           }}
         >
