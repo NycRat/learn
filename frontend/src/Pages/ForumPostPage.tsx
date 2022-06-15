@@ -43,7 +43,9 @@ const ForumPostPage = (props: { id: string | null }) => {
         <p className="forum-post-page-info-text">
           By {post.author} on {post.date.toLocaleDateString("en-US")}
         </p>
-        <div className="forum-post-page-content">{post.content}</div>
+        <pre>
+          <div className="forum-post-page-content">{post.content}</div>
+        </pre>
       </div>
 
       <div className="forum-post-comment-section">
