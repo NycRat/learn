@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { postForumPost } from "../Api/ForumApi";
+import { useNavigate } from "react-router-dom";
 
 const ForumNewPostPage = () => {
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -37,6 +40,8 @@ const ForumNewPostPage = () => {
               content: postContent,
               date: new Date(),
             });
+            navigate("/forum");
+            window.location.reload();
           }}
         >
           Post

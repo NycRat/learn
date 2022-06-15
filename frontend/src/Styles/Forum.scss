@@ -141,6 +141,7 @@
 .new-post-content-textarea {
   font-size: 1.2em;
   margin-top: 10px;
+  resize: none;
   width: 90%;
   height: 55vh;
   background-color: $post-background-color;
