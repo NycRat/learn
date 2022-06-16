@@ -1,6 +1,7 @@
 import axios from "axios";
 import PostInfo from "../Models/Post";
 import UserInfo from "../Models/User";
+import CommentInfo from "../Models/Comment";
 import apiURL from "./ApiUrl";
 
 export const getUserByName = (name: string): UserInfo => {
@@ -38,11 +39,35 @@ export const getForumPostById = async (id: string) => {
   return post;
 };
 
+export const getCommentsByPostId = async (id: string) => {
+  let comments: CommentInfo[] = [];
+  await axios.get(`${apiURL}/forum/posts/${id}/comments`).then((res) => {
+    if (comments) {
+      comments = res.data;
+    }
+  });
+  return comments;
+};
+
 export const postForumPost = async (post: any) => {
   await axios.post(
     `${apiURL}/forum/posts`,
     {
       post: post,
+    },
+    {
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    }
+  );
+};
+
+export const forumSendComment = async (postID: string, comment: string) => {
+  axios.post(
+    `${apiURL}/forum/posts/${postID}/comments`,
+    {
+      comment: comment,
     },
     {
       headers: {

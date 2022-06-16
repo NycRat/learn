@@ -7,5 +7,4 @@ export default interface PostInfo {
   date: Date;
   title: string;
   content: string;
-  comments: CommentInfo[];
 }

@@ -1,7 +1,5 @@
-import UserInfo from "./User";
-
 export default interface CommentInfo {
-  author: UserInfo;
+  author: string;
   date: Date;
   content: string;
 }

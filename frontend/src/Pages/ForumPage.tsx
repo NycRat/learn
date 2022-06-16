@@ -15,7 +15,7 @@ const ForumPage = (props: ForumPageProps) => {
   return (
     <div className="page">
       <h1 className="page-title">FORUM</h1>
-      {user !== "" ? (
+      {user !== "" && (
         <button
           className="fourm-page-new-post-button"
           onClick={() => {
@@ -24,7 +24,7 @@ const ForumPage = (props: ForumPageProps) => {
         >
           New Post
         </button>
-      ) : null}
+      )}
       <ForumSection forumPosts={props.forumPosts} />
     </div>
   );

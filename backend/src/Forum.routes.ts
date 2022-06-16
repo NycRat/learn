@@ -59,4 +59,56 @@ forumRouter.route("/posts/:id").get((req, res) => {
     });
 });
 
+forumRouter
+  .route("/posts/:id/comments")
+  .get((req, res) => {
+    getDB("forumDB")
+      .collection("posts")
+      .findOne({ _id: new ObjectId(req.params.id) }, (err, result) => {
+        if (err) {
+          res.status(500).json({ message: err });
+        } else {
+          if (result) {
+            res.status(200).json(result.comments);
+          } else {
+            res.status(404).json({ message: "Post not found" });
+          }
+        }
+      });
+  })
+  .post((req, res) => {
+    const comment = req.body.comment;
+    verifyToken(req, res, (user) => {
+      getDB("forumDB")
+        .collection("posts")
+        .findOne({ _id: new ObjectId(req.params.id) }, (err, result) => {
+          if (err) {
+            res.status(500).json({ message: err });
+          } else {
+            if (result) {
+              result.comments.push({
+                content: comment,
+                date: new Date(),
+                author: user.username,
+              });
+              getDB("forumDB")
+                .collection("posts")
+                .updateOne(
+                  { _id: new ObjectId(req.params.id) },
+                  { $set: { comments: result.comments } },
+                  (err, result) => {
+                    if (err) {
+                      res.status(500).json({ message: err });
+                    }
+                    res.status(200).json(result);
+                  }
+                );
+            } else {
+              res.status(404).json({ message: "Post not found" });
+            }
+          }
+        });
+    });
+  });
+
 export default forumRouter;

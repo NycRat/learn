@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getForumPostById } from "../Api/ForumApi";
+import {
+  getForumPostById,
+  forumSendComment,
+  getCommentsByPostId,
+} from "../Api/ForumApi";
 import PostInfo from "../Models/Post";
+import CommentInfo from "../Models/Comment";
 import NotFoundPage from "./NotFoundPage";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
 const ForumPostPage = (props: { id: string | null }) => {
   // this the page for displaying a single post
@@ -14,18 +21,23 @@ const ForumPostPage = (props: { id: string | null }) => {
     date: new Date(),
     title: "",
     content: "",
-    comments: [],
   });
+
+  const { user, setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const [comment, setComment] = useState("");
+  const [postComments, setPostComments] = useState<CommentInfo[]>([]);
 
   useEffect(() => {
     const fetchPost = async () => {
       if (props.id === null) {
         if (id !== undefined) {
           setPost(await getForumPostById(id));
+          setPostComments(await getCommentsByPostId(id));
         }
       } else {
         setPost(await getForumPostById(props.id));
+        setPostComments(await getCommentsByPostId(props.id));
       }
       setLoading(false);
     };
@@ -53,15 +65,47 @@ const ForumPostPage = (props: { id: string | null }) => {
           className="show-comments-button"
           onClick={() => setShowComments(!showComments)}
         >
-          Comments: {post.comments.length}
+          Comments: {postComments.length}
         </button>
 
-        {showComments &&
-          post.comments.map((comment) => (
-            <div className="forum-post-comment">
-              {comment.author.username}: {comment.content}
-            </div>
-          ))}
+        {showComments && (
+          <div>
+            {user !== "" ? (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <input
+                  className="comment-input"
+                  placeholder="Comment"
+                  type="text"
+                  name="comment"
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button
+                  className=""
+                  onClick={async () => {
+                    await forumSendComment(post._id, comment);
+                    setTimeout(async () => {
+                      setPostComments(await getCommentsByPostId(post._id));
+                    }, 500); // TODO - make this garenteed to work
+                  }}
+                >
+                  Send
+                </button>
+              </form>
+            ) : (
+              <p>You must be logged in to comment</p>
+            )}
+
+            {postComments.map((comment, i) => (
+              <div className="forum-post-comment" key={i}>
+                {comment.author}: {comment.content}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
