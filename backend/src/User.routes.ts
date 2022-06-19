@@ -13,18 +13,19 @@ userRouter.route("/login").post((req, res) => {
     return;
   }
 
-  collection.findOne(
-    { username: username, password: password },
-    (err, result) => {
-      if (err) {
-        res.status(500).json({ message: err });
-      } else if (result) {
+  collection.findOne({ username: username }, (err, result) => {
+    if (err) {
+      res.status(500).json({ message: err });
+    } else if (result) {
+      if (result.password === password) {
         res.status(200).json({ token: result.token });
       } else {
-        res.status(404).json({ message: "User Not Found" });
+        res.status(401).json({ message: "Unauthorized" });
       }
+    } else {
+      res.status(404).json({ message: "User Not Found" });
     }
-  );
+  });
 });
 
 userRouter.route("/register").post((req, res) => {
