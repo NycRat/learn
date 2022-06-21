@@ -15,7 +15,7 @@ forumRouter
       .limit(10)
       .toArray((err, result) => {
         if (err) {
-          res.status(500).json({ message: err });
+          res.status(500).json({ message: "Error getting posts" });
         } else {
           res.status(200).json(result);
         }
@@ -39,7 +39,7 @@ forumRouter
         .collection("posts")
         .insertOne(post, (err, result) => {
           if (err) {
-            res.status(500).json({ message: err });
+            res.status(500).json({ message: "Error creating post" });
           } else {
             res.status(200).json(result);
           }
@@ -47,26 +47,30 @@ forumRouter
     });
   });
 
-forumRouter.route("/posts/:id").get((req, res) => {
-  getDB("forumDB")
-    .collection("posts")
-    .findOne({ _id: new ObjectId(req.params.id) }, (err, result) => {
-      if (err) {
-        res.status(500).json({ message: err });
-      } else {
-        res.status(200).json(result);
-      }
-    });
+forumRouter.route("/posts/id/:id").get((req, res) => {
+  try {
+    getDB("forumDB")
+      .collection("posts")
+      .findOne({ _id: new ObjectId(req.params.id) }, (err, result) => {
+        if (err) {
+          res.status(500).json({ message: "Error getting post" });
+        } else {
+          res.status(200).json(result);
+        }
+      });
+  } catch (err) {
+    res.status(500).json({ message: "Error getting post" });
+  }
 });
 
 forumRouter
-  .route("/posts/:id/comments")
+  .route("/posts/id/:id/comments")
   .get((req, res) => {
     getDB("forumDB")
       .collection("posts")
       .findOne({ _id: new ObjectId(req.params.id) }, (err, result) => {
         if (err) {
-          res.status(500).json({ message: err });
+          res.status(500).json({ message: "Error getting post" });
         } else {
           if (result) {
             res.status(200).json(result.comments);
@@ -83,7 +87,7 @@ forumRouter
         .collection("posts")
         .findOne({ _id: new ObjectId(req.params.id) }, (err, result) => {
           if (err) {
-            res.status(500).json({ message: err });
+            res.status(500).json({ message: "Error getting post" });
           } else {
             if (result) {
               result.comments.push({
@@ -98,7 +102,7 @@ forumRouter
                   { $set: { comments: result.comments } },
                   (err, result) => {
                     if (err) {
-                      res.status(500).json({ message: err });
+                      res.status(500).json({ message: "Error updating post" });
                     }
                     res.status(200).json(result);
                   }

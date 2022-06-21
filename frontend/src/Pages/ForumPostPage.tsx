@@ -19,34 +19,38 @@ const ForumPostPage = (props: { id: string | null }) => {
     _id: "",
     author: "",
     date: new Date(),
-    title: "",
+    title: "loading",
     content: "",
   });
 
   const { user, setUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState<CommentInfo[]>([]);
 
   useEffect(() => {
     const fetchPost = async () => {
+      let validID: string | null = null;
       if (props.id === null) {
         if (id !== undefined) {
-          setPost(await getForumPostById(id));
-          setPostComments(await getCommentsByPostId(id));
+          validID = id;
         }
       } else {
-        setPost(await getForumPostById(props.id));
-        setPostComments(await getCommentsByPostId(props.id));
+        validID = props.id;
       }
-      setLoading(false);
+      console.log(validID);
+      if (validID) {
+        setPost(await getForumPostById(validID));
+        setPostComments(await getCommentsByPostId(validID));
+      } else {
+        setPost(null);
+      }
     };
     fetchPost();
   }, [props.id, id]);
 
   const [showComments, setShowComments] = useState(false);
 
-  return post === null ? (
+  return !post ? (
     <NotFoundPage />
   ) : (
     <div className="page">

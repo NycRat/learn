@@ -12,6 +12,9 @@ const Navbar = () => {
       <a className="nav-link" href="/#/forum">
         Forum
       </a>
+      <a className="nav-link" href="/#/tutorials">
+        Tutorials
+      </a>
       {user !== "" ? (
         <a className="nav-link nav-right" href={"/#/user/" + user}>
           {user}

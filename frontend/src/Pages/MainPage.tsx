@@ -8,7 +8,7 @@ export interface MainPageProps {
 const MainPage = (props: MainPageProps) => {
   return (
     <div className="page">
-      <h1 className="page-title">LEARN</h1>
+      <h1 className="page-title">Learn</h1>
       <div className="main-page-left-section">
         <ForumSection forumPosts={props.topForumPosts} />
       </div>

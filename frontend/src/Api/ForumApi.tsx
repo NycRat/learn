@@ -25,23 +25,27 @@ export const getRecentForumPosts = async () => {
 
 export const getForumPostById = async (id: string) => {
   let post: PostInfo | null = null;
-  await axios.get(`${apiURL}/forum/posts/${id}`).then((res) => {
-    try {
-      post = res.data;
-      if (post !== null) {
-        post.date = new Date(post.date);
+  await axios
+    .get(`${apiURL}/forum/posts/id/${id}`)
+    .then((res) => {
+      try {
+        post = res.data;
+        if (post !== null) {
+          post.date = new Date(post.date);
+        }
+      } catch (err) {
+        console.log(err);
       }
-      return res.data;
-    } catch (err) {
-      console.log(err);
-    }
-  });
+    })
+    .catch((err) => {
+      post = null;
+    });
   return post;
 };
 
 export const getCommentsByPostId = async (id: string) => {
   let comments: CommentInfo[] = [];
-  await axios.get(`${apiURL}/forum/posts/${id}/comments`).then((res) => {
+  await axios.get(`${apiURL}/forum/posts/id/${id}/comments`).then((res) => {
     if (comments) {
       comments = res.data;
     }
@@ -65,7 +69,7 @@ export const postForumPost = async (post: any) => {
 
 export const forumSendComment = async (postID: string, comment: string) => {
   axios.post(
-    `${apiURL}/forum/posts/${postID}/comments`,
+    `${apiURL}/forum/posts/id/${postID}/comments`,
     {
       comment: comment,
     },

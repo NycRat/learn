@@ -12,6 +12,10 @@ import { getUserFromToken } from "./Api/UserApi";
 import RegisterPage from "./Pages/RegisterPage";
 import UserPage from "./Pages/UserPage";
 import ForumNewPostPage from "./Pages/ForumNewPostPage";
+import TutorialListPage from "./Pages/TutorialListPage";
+import { getTutorials } from "./Api/TutorialApi";
+import { TutorialInfo } from "./Models/Tutorial";
+import TutorialPage from "./Pages/TutorialPage";
 
 type Theme = "light" | "dark";
 
@@ -24,6 +28,7 @@ const App = () => {
   const [theme, setTheme] = useState<Theme>("dark");
 
   const [forumPosts, setForumPosts] = useState<PostInfo[]>([]);
+  const [tutorials, setTutorials] = useState<TutorialInfo[]>([]);
   const [user, setUser] = useState<string>(""); // for now, just a string
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -36,8 +41,8 @@ const App = () => {
     const fetchInfo = async () => {
       const user = await getUserFromToken(localStorage.getItem("token"));
       setUser(user ? user.username : "");
-      const posts = await getRecentForumPosts();
-      setForumPosts(posts);
+      setForumPosts(await getRecentForumPosts());
+      setTutorials(await getTutorials());
       setIsLoading(false);
     };
     fetchInfo();
@@ -61,6 +66,11 @@ const App = () => {
             />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
+            <Route path="/tutorials/:id" element={<TutorialPage id={null} />} />
+            <Route
+              path="/tutorials"
+              element={<TutorialListPage tutorials={tutorials} />}
+            />
             <Route path="/user/:username" element={<UserPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
