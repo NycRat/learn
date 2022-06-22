@@ -7,19 +7,57 @@
   background-color: $navbar-color;
   text-align: left;
   border-bottom: 1px solid #000000;
-
-  // TODO - dropdown on mobile / low space
+  height: calc(50px + 0.5vh);
 }
 
 .nav-link {
   margin-left: 20px;
   color: $text-color;
   text-decoration: none;
-  font-size: calc(26px + 0.5vw);
+  font-size: calc(30px + 0.5vh);
 }
 
 .nav-right {
   float: right;
   margin-left: 0px;
   margin-right: 20px;
+}
+
+.nav-dropdown-icon {
+  display: none;
+  text-align: center;
+  height: calc(50px + 0.5vh);
+  width: calc(50px + 0.5vh);
+}
+
+@media screen and (max-width: 600px) {
+  .nav-dropdown {
+    display: none;
+  }
+
+  .nav-dropdown-icon {
+    display: block;
+    // float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .navbar.dropdown-active {
+    .nav-dropdown {
+      background-color: $navbar-color;
+      display: block;
+      float: right;
+      height: 300%;
+      width: 150px;
+      border-radius: 10px;
+      margin-top: calc(50px + 0.5vh);
+
+      .nav-link {
+        float: right;
+        position: relative;
+        margin: 0;
+      }
+    }
+  }
 }
