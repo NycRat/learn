@@ -5,6 +5,8 @@
   --navbar-color: #212121;
   --post-background-color: #575454;
   --outline-color: #ffffff;
+  --tutorial-background-color: #1e190b;
+  --tutorial-list-background-color: #000000;
 }
 
 .theme-light {
@@ -14,6 +16,8 @@
   --navbar-color: #c1b5b5;
   --post-background-color: #dec1c1;
   --outline-color: #262323;
+  --tutorial-background-color: #f7d7cc;
+  --tutorial-list-background-color: #000000;
 }
 
 $background-color: var(--background-color);
@@ -22,3 +26,5 @@ $button-color: var(--button-color);
 $navbar-color: var(--navbar-color);
 $post-background-color: var(--post-background-color);
 $outline-color: var(--outline-color);
+$tutorial-background-color: var(--tutorial-background-color);
+$tutorial-list-background-color: var(--tutorial-list-background-color);

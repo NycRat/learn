@@ -1,22 +1,37 @@
 import express from "express";
 import { ObjectId } from "mongodb";
 import { getDB } from "./ConnectionDB";
+import { verifyToken } from "./LoginToken";
 
 const tutorialRouter = express.Router();
 
 tutorialRouter
   .route("/")
   .post((req, res) => {
-    const db = getDB("tutorialDB");
-    const { title, content } = req.body;
-    db.collection("tutorials")
-      .insertOne({ title, content })
-      .then((result) => {
-        res.status(201).json({ message: "Tutorial created" });
-      })
-      .catch((err) => {
-        res.status(500).json({ message: "Error creating tutorial" });
-      });
+    const { title, description, content } = req.body;
+    if (!(title && description && content)) {
+      res
+        .status(400)
+        .json({ message: "Title, description, and content is required" });
+      return;
+    }
+    verifyToken(req, res, (user) => {
+      getDB("tutorialDB")
+        .collection("tutorials")
+        .insertOne({
+          title: title,
+          description: description,
+          content: content,
+          author: user.username,
+          date: new Date(),
+        })
+        .then((result) => {
+          res.status(201).json({ message: "Tutorial created" });
+        })
+        .catch((err) => {
+          res.status(500).json({ message: "Error creating tutorial" });
+        });
+    });
   })
   .get((req, res) => {
     const db = getDB("tutorialDB");

@@ -9,6 +9,7 @@ const TutorialPage = (props: { id: string | null }) => {
   const [tutorial, setTutorial] = useState<TutorialInfo | null>({
     _id: "",
     title: "loading",
+    description: "",
     content: "",
     author: "",
     date: new Date(),
@@ -37,8 +38,8 @@ const TutorialPage = (props: { id: string | null }) => {
     <NotFoundPage />
   ) : (
     <div className="page">
-      {tutorial.title}
-      {tutorial.content}
+      <h1 className="tutorial-title">{tutorial.title}</h1>
+      <pre className="tutorial-content">{tutorial.content}</pre>
     </div>
   );
 };

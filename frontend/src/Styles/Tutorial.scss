@@ -1,0 +1,30 @@
+@import "./Themes.scss";
+
+.tutorial-list {
+  background-color: $tutorial-list-background-color;
+  border-radius: 10px;
+  width: 70%;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.tutorial-preview {
+  background-color: $tutorial-background-color;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+  padding: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.tutorial-title {
+  font-size: calc(40px + 3vw);
+  margin: 0;
+  padding: 0;
+}
+
+.tutorial-content {
+  font-size: 1.2em;
+}
